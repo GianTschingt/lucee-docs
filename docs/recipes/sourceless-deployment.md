@@ -2,7 +2,7 @@
 {
   "title": "Deploying without CFML Source Code",
   "id": "sourceless-deployment",
-  "description": "How to deploy a Lucee application without readable CFML source (the equivalent of cfencode): compile templates in place to bytecode with compileToBytecode() in Lucee 8, or ship sourceless Lucee archives.",
+  "description": "How to deploy a Lucee application without readable CFML source (the equivalent of cfencode): compile templates in place to bytecode with compileToBytecode() (since Lucee 7.0.5, experimental), or ship sourceless Lucee archives.",
   "keywords": [
     "cfencode",
     "source protection",
@@ -27,12 +27,14 @@
 
 Lucee has no `cfencode` tool, but there are two ways to deploy an application without readable CFML source:
 
-- **`compileToBytecode()`** (Lucee 8) replaces each `.cfm`, `.cfc` and `.cfs` file with its compiled bytecode, in place. Lucee detects that the file contains bytecode and executes it directly.
+- **`compileToBytecode()`** (since Lucee 7.0.5, experimental) replaces each `.cfm`, `.cfc` and `.cfs` file with its compiled bytecode, in place. Lucee detects that the file contains bytecode and executes it directly.
 - **Sourceless archives** (`.lar`) package a mapping as compiled classes only. See [[archives-creating-and-deploy]].
 
 Both deploy compiled code instead of source.
 
 ## Compile in place with compileToBytecode()
+
+> **Note:** `compileToBytecode()` and `restoreToSource()` are available since Lucee 7.0.5 and are experimental. Their behaviour and signatures may still change.
 
 `compileToBytecode( path [, keepSource] [, privateKey] [, recursive] )` compiles a single file, or a whole directory, and writes the bytecode back over the original file.
 
